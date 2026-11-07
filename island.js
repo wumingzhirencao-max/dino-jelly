@@ -405,7 +405,7 @@ for(let i=0;i<24;i++){const angle=i*2.4,r=7+(i%6)*1.05,x=Math.cos(angle)*r,z=Mat
 const swimmers=[];
 for(let i=0;i<34;i++){const g=new THREE.Group(),m=mat(['#ffb347','#5ad1e6','#ff7fa8','#ffd166'][i%4]);ball(g,m,0,0,0,.27,.115,.085);const tail=mesh(new THREE.ConeGeometry(.15,.26,3),m,g,-.30,0,0);tail.rotation.z=Math.PI/2;ball(g,eye,.17,.04,.078,.022,.022,.016);scene.add(g);swimmers.push({g,phase:i*.63,r:7.3+(i%5)*.9,y:-.7+(i%4)*.27})}
 // 3.40d 用户要求：「长条水滴，能不能用二维的水拖尾素材代替」→ 水滴网格换成 **2D 水拖尾 sprite**。
-// 素材：assets/water-trail.png（512×256 RGBA，程序化生成，见 D:\Deepseek _file\_make_water_trail.py）
+// 素材：assets/water-trail.png（512×256 RGBA，程序化生成）
 //  · 平面几何贴在波面上（绕 X 转 -90°），实例的 **yaw 对齐自己的速度方向**，所以长轴永远顺着水流；
 //  · 长度 = length（世界单位）、宽度 = width，都是实例缩放；不再用球体去"假装"水线；
 //  · 生成位置/物理/淡出与 3.40c 相同（前沿扇出 + 上抛重力 + 落水即止）。
