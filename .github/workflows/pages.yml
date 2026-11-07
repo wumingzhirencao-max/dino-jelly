@@ -1,0 +1,41 @@
+name: Deploy to GitHub Pages
+
+# 只在「推 main」或手动触发时部署；没有定时任务、没有回归测试。
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 同一时间只跑一个部署；新的推送取消排队中的旧任务，但正在发布的不打断。
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      # 纯静态站点：仓库根目录就是产物，不需要构建。
+      # 上传动作默认排除 .git 与 .github，仓库本身只有 ~17MB（_baseline / 检查脚本都在 .gitignore 里）。
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
