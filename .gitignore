@@ -45,3 +45,8 @@ purple-pet-*.png
 reef-level-preview.png
 seabed-preview.png
 sea-grab-preview.png
+
+# 旧版本/未引用的资源留在本地即可
+assets/*-v1*.png
+assets/volcanic-rock.png
+assets/water-dragon/old-parts.json
