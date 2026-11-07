@@ -1,0 +1,36 @@
+{
+ "smk": {
+  "puffs": 14,
+  "plume": 0.52,
+  "baseY": 0.395,
+  "grow": 1.65,
+  "speed": 0.45,
+  "size": 0.4,
+  "sway": 2.5,
+  "lean": 0.12,
+  "fadeIn": 0.06,
+  "fadeOut": 0.22,
+  "offX": -0.17,
+  "offZ": -0.045
+ },
+ "caus": {
+  "mode": 1,
+  "strength": 1.55,
+  "sharp": 1.45,
+  "scale": 0.2,
+  "depth": 0.25,
+  "density": 0.5,
+  "blob": 0.3,
+  "thin": 0.5
+ },
+ "defCaus": {
+  "mode": 1,
+  "strength": 1.55,
+  "sharp": 1.45,
+  "scale": 0.2,
+  "depth": 0.25,
+  "density": 0.5,
+  "blob": 0.3,
+  "thin": 0.5
+ }
+}

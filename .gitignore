@@ -1,0 +1,47 @@
+# 开发期产物（截图、基线日志、临时探针），不进仓库
+_baseline/
+_mods-out/
+.dream-loop/
+dinosaur-island/
+node_modules/
+
+# 3D 源文件（体积大，只留导出的 model.js）
+*.blend
+*.blend1
+
+# 一次性构建/调参脚本与预览图（本地开发用，不参与体验）
+add-*.cjs
+adjust*.cjs
+apply-art-review.cjs
+capture-art.cjs
+crest-foam.cjs
+directional-wake.cjs
+finish-reef.cjs
+fix.cjs
+format-art-shader.cjs
+frames.cjs
+guard-shader-chunks.cjs
+local-ripple.cjs
+measure-performance.cjs
+preserve-volume-palettes.cjs
+refine*.cjs
+smooth-edge.cjs
+smooth-wake-performance.cjs
+update-*.cjs
+verify*.cjs
+check-*.cjs
+*.bak
+
+# 开发期的对照图
+*-preview.png
+reference-*.png
+preview.png
+mobile.png
+embed-pane-*.png
+art-upgrade-preview.png
+controls-preview.png
+pet-*.png
+purple-pet-*.png
+reef-level-preview.png
+seabed-preview.png
+sea-grab-preview.png
