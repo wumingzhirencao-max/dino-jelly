@@ -402,11 +402,12 @@ window.seabedLife={floorY,update:t=>{CAUS.time.value=t;updateBubbles(t)},get sta
   const DEF={};for(const k in window.seabedCaustics){if(k!=='time')DEF[k]=window.seabedCaustics[k].value}
   
   for(const k in DEF){if(window.seabedCaustics[k])window.seabedCaustics[k].value=DEF[k]}
-  fetch('/api/tuning').then(r=>r.json()).then(j=>{
+  /* 静态托管（GitHub Pages）没有 /api/tuning：回退读同目录 tuning.json。 */
+  (async()=>{let j=null;for(const u of ['/api/tuning','tuning.json']){try{const r=await fetch(u,{cache:'no-store'});if(r.ok){j=await r.json();break}}catch(e){}}if(!j)return;
     if(j.caus)for(const k in j.caus){if(window.seabedCaustics[k])window.seabedCaustics[k].value=j.caus[k]}
     CAUS_BASE=j.defCaus||null;
     for(const k in rows){rows[k].inp.value=String(window.seabedCaustics[k].value);rows[k].show()}
-  }).catch(()=>{});   // 自动收录所有滑杆可调项（含后加的密度/大小），time 不算
+  })();   // 自动收录所有滑杆可调项（含后加的密度/大小），time 不算
   const defs=[
     ['strength','焦散强度',0,2,.05,2,''],
     ['sharp','锐度',.4,4,.05,2,''],

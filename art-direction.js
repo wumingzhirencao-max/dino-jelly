@@ -427,10 +427,11 @@ document.querySelector('#day').onclick=()=>{dayBase();applyArtLighting()};applyA
            rows.push({key,inp,out,fmt,unit});
           }
           syncRows=()=>{for(const r of rows){r.inp.value=String(SMK[r.key]);r.out.textContent=r.fmt(SMK[r.key])+r.unit}};
-          fetch('/api/tuning').then(r=>r.json()).then(j=>{
+          /* 静态托管（GitHub Pages）没有 /api/tuning：回退读同目录 tuning.json，让线上看到的仍是调好的那组。 */
+          (async()=>{let j=null;for(const u of ['/api/tuning','tuning.json']){try{const r=await fetch(u,{cache:'no-store'});if(r.ok){j=await r.json();break}}catch(e){}}if(!j)return;
             if(j.smk){Object.assign(SMK,j.smk);window.volcanoSmoke.setPuffs(SMK.puffs)}
             SMK_BASE=j.defSmk||null;syncRows();
-          }).catch(()=>{});
+          })();
          const rst=document.createElement('button');
          const save=document.createElement('button');save.id='smk-save';save.type='button';save.textContent='设为默认';
            save.style.cssText='padding:6px 10px;border-radius:8px;border:1px solid rgba(0,0,0,.16);background:#fff;cursor:pointer;font-size:11px';
