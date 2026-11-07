@@ -403,7 +403,7 @@ window.seabedLife={floorY,update:t=>{CAUS.time.value=t;updateBubbles(t)},get sta
   
   for(const k in DEF){if(window.seabedCaustics[k])window.seabedCaustics[k].value=DEF[k]}
   /* 静态托管（GitHub Pages）没有 /api/tuning：回退读同目录 tuning.json。 */
-  (async()=>{let j=null;for(const u of ['/api/tuning','tuning.json']){try{const r=await fetch(u,{cache:'no-store'});if(r.ok){j=await r.json();break}}catch(e){}}if(!j)return;
+  const isLocal=/^(127\.0\.0\.1|localhost|\[::1\])$/.test(location.hostname);(async()=>{let j=null;for(const u of (isLocal?['/api/tuning','tuning.json']:['tuning.json'])){try{const r=await fetch(u,{cache:'no-store'});if(r.ok){j=await r.json();break}}catch(e){}}if(!j)return;
     if(j.caus)for(const k in j.caus){if(window.seabedCaustics[k])window.seabedCaustics[k].value=j.caus[k]}
     CAUS_BASE=j.defCaus||null;
     for(const k in rows){rows[k].inp.value=String(window.seabedCaustics[k].value);rows[k].show()}

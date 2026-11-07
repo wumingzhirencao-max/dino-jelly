@@ -2,13 +2,18 @@
 
 一座冒烟的火山、四种恐龙、一片会回应你的果冻海 —— 纯前端 3D 交互小品（three.js，零构建、零依赖安装）。
 
-**想直接玩**：`git clone` 后双击 `index.html`（Chrome / Edge），或 `node serve.cjs` 然后开 <http://127.0.0.1:8795/>。
+**▶ 在线直接玩：<https://wumingzhirencao-max.github.io/dino-jelly/>** —— 手机浏览器也能开（触屏拖拽旋转、双指缩放）。
+
+**本地玩**：`git clone` 后双击 `index.html`（Chrome / Edge），或 `node serve.cjs` 然后开 <http://127.0.0.1:8795/>。
 仓库就是完整可玩版本，运行期只用到根目录的 `.js/.css` 和 `assets/`、`models/` 里的资源，不需要装任何包。
 
 ## 在线体验（GitHub Pages）
 
-推上去之后在仓库 **Settings → Pages** 里把 Source 设成 `Deploy from a branch: main / (root)`，
-一分钟后就有一条 `https://<你的用户名>.github.io/<仓库名>/` 的链接，手机浏览器也能直接开（触屏拖拽旋转、双指缩放）。
+线上跑的是 `main` 分支的静态托管（Source = `Deploy from a branch: main / (root)`）。两点差异要知道：
+
+- 静态托管**没有后端**，所以两块调参面板读的是仓库里的 `tuning.json`（当前这组就是作者调好的参数），
+  拖滑杆当场生效、刷新回原值；点「设为默认」只在本地 `node serve.cjs` 下才会写盘。
+- 想换掉线上默认值：本地调好 → 点「设为默认」→ 提交并推送 `tuning.json` → Pages 一分钟重建。
 
 ## 这个仓库里有什么
 

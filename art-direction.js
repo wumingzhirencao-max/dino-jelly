@@ -428,7 +428,7 @@ document.querySelector('#day').onclick=()=>{dayBase();applyArtLighting()};applyA
           }
           syncRows=()=>{for(const r of rows){r.inp.value=String(SMK[r.key]);r.out.textContent=r.fmt(SMK[r.key])+r.unit}};
           /* 静态托管（GitHub Pages）没有 /api/tuning：回退读同目录 tuning.json，让线上看到的仍是调好的那组。 */
-          (async()=>{let j=null;for(const u of ['/api/tuning','tuning.json']){try{const r=await fetch(u,{cache:'no-store'});if(r.ok){j=await r.json();break}}catch(e){}}if(!j)return;
+          const isLocal=/^(127\.0\.0\.1|localhost|\[::1\])$/.test(location.hostname);(async()=>{let j=null;for(const u of (isLocal?['/api/tuning','tuning.json']:['tuning.json'])){try{const r=await fetch(u,{cache:'no-store'});if(r.ok){j=await r.json();break}}catch(e){}}if(!j)return;
             if(j.smk){Object.assign(SMK,j.smk);window.volcanoSmoke.setPuffs(SMK.puffs)}
             SMK_BASE=j.defSmk||null;syncRows();
           })();
